@@ -91,7 +91,10 @@ $app->delete("/categories/{id}", function($id) use ($app) {
     return $app['twig']->render('categories.html.twig', array('categories' => Category::getAll()));
 });
 
-
+$app->get("/task_list", function() use ($app){
+    $task_list = Category::printTaskList($_GET['taskList']);
+    return $app['twig']->render('categories.html.twig', array('task_list' => $task_list, 'categories' => Category::getAll()));
+});
     /*
 
 

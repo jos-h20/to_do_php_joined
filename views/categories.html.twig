@@ -24,6 +24,25 @@
         <button type='submit'>Clear</button>
     </form>
 
+    {% if categories is not empty %}
+    <h2>See tasks associated with the categories of your choice</h2>
+        <form action='/task_list' method='get'>
+                {% for category in categories %}
+                    <label for="taskList">{{ category.getName }}</label>
+                    <input type="checkbox" name="taskList[]" value="{{ category.getId }}">
+                {% endfor %}
+                <button type="submit" name="button">Submit</button>
+        </form>
+    {% endif %}
+
+    {% if task_list is not empty %}
+        <ul>
+            {% for task in task_list %}
+                <li><a href='/tasks/{{ task.getId }}'>{{ task.getDescription }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <hr>
     <p><a href='/'>Home</a></p>
 </body>
 </html>
