@@ -6,9 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
-    'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
-    'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',
+    'Category' => $baseDir . '/src/Category.php',
+    'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/File/Iterator.php',
+    'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/File/Iterator/Facade.php',
+    'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/File/Iterator/Factory.php',
     'PHPUnit_Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit_Extensions_GroupTestSuite' => $vendorDir . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
     'PHPUnit_Extensions_PhptTestCase' => $vendorDir . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',
@@ -440,5 +441,6 @@ return array(
     'SebastianBergmann\\RecursionContext\\Exception' => $vendorDir . '/sebastian/recursion-context/src/Exception.php',
     'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => $vendorDir . '/sebastian/recursion-context/src/InvalidArgumentException.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
+    'Task' => $baseDir . '/src/Task.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
 );
