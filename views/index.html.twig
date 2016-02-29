@@ -1,38 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="/css/bootstrap-theme.min.css" type="text/css">
-        <link rel="stylesheet" href="/css/styles.css" type="text/css">
         <meta charset="utf-8">
         <title></title>
     </head>
     <body>
-        <h1>Welcome to To Do List</h1>
+    <h1>Welcome to To Do List</h1>
 
-        <p>Create a new category:</p>
+    <h3><a href="/categories">Add or view a category</a></h3>
+    <h3><a href="/tasks">Add or view a task</a></h3>
 
-        <form action='/categories' method='post'>
-            <label for='name'>Category name</label>
-            <input id='name' name='name' type='text'>
-
-            <button type='submit'>Add category</button>
-        </form>
-
-        {% if categories is not empty %}
-            <p>Here are all your categories:</p>
-            <ul>
-                {% for category in categories %}
-                    <li><a href="categories/{{ category.getId }}">{{ category.getName }}</a></li>
-                {% endfor %}
-            </ul>
-            <p>There are no categories yet!</p>
-        {% endif %}
-
-        <form action='/delete_categories' method='post'>
-            <button type='submit'>Clear</button>
-        </form>
-        <p><a href="/tasks">Click here</a> to see all of the tasks and to add a task.</p>
-        <p><a href="/total">Click here</a> to see all of the tasks and categories.</p>
-    </body>
+</body>
 </html>

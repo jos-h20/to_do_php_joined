@@ -219,6 +219,46 @@
               //Assert
               $this->assertEquals($test_category->getTasks(), [$test_task, $test_task2]);
           }
+
+          function testPrintTaskList()
+          {
+              //Arrange
+              $name = "Wash the dog";
+              $id = 1;
+              $test_category = new Category($name, $id);
+              $test_category->save();
+
+              $name2 = "Home stuff";
+              $id2 = 2;
+              $test_category2 = new Category($name2, $id2);
+              $test_category2->save();
+
+              $description = "Wash the dog";
+              $id3 = 3;
+              $test_task = new Task($description, $id3);
+              $test_task->save();
+
+              $description2 = "Take out the trash";
+              $id4 = 4;
+              $test_task2 = new Task($description2, $id4);
+              $test_task2->save();
+
+              //Act
+              $test_category->addTask($test_task);
+              $test_category2->addTask($test_task2);
+
+
+            $cat_ids = array();
+            $cat_id_1 = $test_category->getId();
+            $cat_id_2 = $test_category2->getId();
+            array_push($cat_ids, $cat_id_1);
+            array_push($cat_ids, $cat_id_2);
+            $result = Category::printTaskList($cat_ids);
+
+            //Assert
+            $this->assertEquals([$test_task, $test_task2], $result);
+
+          }
       }
 
 ?>

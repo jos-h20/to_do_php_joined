@@ -1,37 +1,29 @@
-<!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="/css/bootstrap-theme.min.css" type="text/css">
-        <link rel="stylesheet" href="/css/styles.css" type="text/css">
-        <meta charset="utf-8">
-        <title></title>
-    </head>
-    <body>
-        <body>
-        <h1>{{ category.getName }}</h1>
+<head>
+    <title>To Do List</title>
+</head>
+<body>
+    <h1>Categories</h1>
 
-        {% if tasks is not empty %}
-            <p>Here are all your tasks:</p>
-            <ul>
-                {% for task in tasks %}
-                    <li>{{ task.getDescription }} by {{ task.getDue }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+    {% if categories is not empty %}
+        <p>Here are all your categories:</p>
+        <ul>
+            {% for category in categories %}
+                <li><a href="/categories/{{ category.getId }}">{{ category.getName }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
-        <h4>Add a task</h4>
+    <form action='/categories' method='post'>
+        <label for='name'>Category name</label>
+        <input id='name' name='name' type='text'>
 
+        <button type='submit'>Add category</button>
+    </form>
+    <form action='/delete_categories' method='post'>
+        <button type='submit'>Clear</button>
+    </form>
 
-        <form action='/tasks' method='post'>
-            <input id="category_id" name="category_id" type="hidden" value="{{ category.getId()}}">
-            <label for='description'>Task Description</label>
-            <input id='description' name='description' type='text'>
-            <label for='due'>Complete By:</label>
-            <input id='due' name='due' type='date'>
-            <button type='submit'>Add task</button>
-        </form>
-        <p><a href="/categories/{{ category.getId }}/edit">Edit this category</a></p>
-        <p><a href='/'>Home</a></p>
-    </body>
+    <p><a href='/'>Home</a></p>
+</body>
 </html>

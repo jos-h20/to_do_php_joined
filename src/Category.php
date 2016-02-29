@@ -97,5 +97,21 @@
             }
             return $tasks;
         }
+
+
+        static function printTaskList($cat_ids)
+        {
+            $task_list = [];
+            foreach($cat_ids as $id){
+                $curr_category = Category::find($id);
+                $tasks = $curr_category->getTasks();
+                    foreach($tasks as $task)
+                    {
+                        $task_list[] = $task;
+                    }
+
+            }
+                return $task_list;
+        }
     }
 ?>
