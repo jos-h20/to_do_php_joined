@@ -235,5 +235,23 @@ function testGetCategories()
     $this->assertEquals($test_task->getCategories(), [$test_category, $test_category2]);
 }
 
+        function testMarkCompleted()
+        {
+            //Arrange
+            $description = "File reports";
+            $due_date = "2016/02/29";
+            $is_completed  = 0;
+            $id = 1000;
+            $test_task = new Task($description, $due_date, $is_completed, $id);
+            $test_task->save();
+
+            //Act
+            $test_task->markComplete();
+            $result = $test_task->getIsCompleted();
+
+            //Assert
+            $this->assertEquals(1, $result);
+        }
+
     }
 ?>

@@ -38,7 +38,7 @@
     {% if task_list is not empty %}
         <ul>
             {% for task in task_list %}
-                <li><a href='/tasks/{{ task.getId }}'>{{ task.getDescription }}</a></li>
+                <li><a href="/tasks/{{ task.getId }}">{{ task.getDescription }}</a></li>
             {% endfor %}
         </ul>
     {% endif %}

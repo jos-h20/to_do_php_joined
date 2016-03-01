@@ -31,7 +31,8 @@
 
     $app->post("/tasks", function() use ($app) {
     $description = $_POST['description'];
-    $task = new Task($description);
+    $due_date = $_POST['due_date'];
+    $task = new Task($description, $due_date);
     $task->save();
     return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
     });
@@ -46,6 +47,8 @@
         $category->save();
         return $app['twig']->render('categories.html.twig', array('categories' => Category::getAll()));
     });
+
+
 
     $app->get("/categories/{id}", function($id) use ($app) {
         $category = Category::find($id);
@@ -93,8 +96,19 @@ $app->delete("/categories/{id}", function($id) use ($app) {
 
 $app->get("/task_list", function() use ($app){
     $task_list = Category::printTaskList($_GET['taskList']);
+    var_dump($task_list);
     return $app['twig']->render('categories.html.twig', array('task_list' => $task_list, 'categories' => Category::getAll()));
 });
+
+
+ $app->patch("/finished", function() use ($app){
+    $task = Task::find($_POST['id']);
+    $task->markComplete();
+    return $app['twig']->render('tasks.html.twig', 'tasks' => Task::getAll()));
+ });
+
+
+
     /*
 
 

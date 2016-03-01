@@ -2,11 +2,15 @@
     class Task
     {
         private $description;
+        private $due_date;
+        private $is_completed;
         private $id;
 
-        function __construct($description, $id = null)
+        function __construct($description, $due_date, $is_completed = 0, $id = null)
         {
             $this->description = $description;
+            $this->due_date = $due_date;
+            $this->is_completed = $is_completed;
             $this->id = $id;
         }
 
@@ -20,6 +24,26 @@
             return $this->description;
         }
 
+        function getDueDate()
+        {
+            return $this->due_date;
+        }
+
+        function setDueDate($due_date)
+        {
+            $this->due_date = $due_date;
+        }
+
+        function getIsCompleted()
+        {
+            return $this->is_completed;
+        }
+
+        function setIsCompleted($is_completed)
+        {
+            $this->is_completed = $is_completed;
+        }
+
         function getId()
         {
             return $this->id;
@@ -27,7 +51,7 @@
 
         function save()
         {
-              $GLOBALS['DB']->exec("INSERT INTO tasks (description) VALUES ('{$this->getDescription()}');");
+              $GLOBALS['DB']->exec("INSERT INTO tasks (description, due_date, is_completed) VALUES ('{$this->getDescription()}', '{$this->getDueDate()}', '{$this->getIsCompleted()}');");
               $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
@@ -37,8 +61,10 @@
             $tasks = array();
             foreach($returned_tasks as $task) {
                 $description = $task['description'];
+                $due_date = $task['due_date'];
+                $is_completed = $task['is_completed'];
                 $id = $task['id'];
-                $new_task = new Task($description, $id);
+                $new_task = new Task($description, $due_date, $is_completed, $id);
                 array_push($tasks, $new_task);
             }
             return $tasks;
@@ -95,6 +121,12 @@ $GLOBALS['DB']->exec("DELETE FROM categories_tasks WHERE task_id = {$this->getId
                 array_push($categories, $new_category);
             }
             return $categories;
+        }
+
+        function markComplete()
+        {
+            $GLOBALS['DB']->exec("UPDATE tasks SET is_completed = 1 WHERE id = {$this->getId()};");
+            $this->setIsCompleted(1);
         }
     }
 ?>

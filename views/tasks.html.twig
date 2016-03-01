@@ -9,7 +9,13 @@
         <p>Here are all your tasks:</p>
         <ul>
             {% for task in tasks %}
-                <li><a href="/tasks/{{ task.getId }}">{{ task.getDescription }}</a></li>
+                <li><a href="/tasks/{{ task.getId }}">{{ task.getDescription }}</a>
+                    <form action="/finished" method="post">
+                        <input type="hidden" name="_method" value="patch">
+                        <input type="hidden" name="id" value="{{ task.getId }}">
+                        <button type="button" name="button">Mark as Complete</button>
+                    </form>
+                </li>
             {% endfor %}
         </ul>
     {% endif %}
