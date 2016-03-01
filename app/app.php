@@ -104,7 +104,7 @@ $app->get("/task_list", function() use ($app){
  $app->patch("/finished", function() use ($app){
     $task = Task::find($_POST['id']);
     $task->markComplete();
-    return $app['twig']->render('tasks.html.twig', 'tasks' => Task::getAll()));
+    return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
  });
 
 
